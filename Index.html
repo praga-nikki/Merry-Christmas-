@@ -2,66 +2,55 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Merry Christmas</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  <main>
 
-    <!-- SECTION 1 -->
-    <section class="section fade">
-      <p>
-        Christmas feels a little warmer<br>
-        when you think of the right people.
-      </p>
-    </section>
+<!-- SNOW -->
+<div class="snow"></div>
 
-    <!-- SNOWMAN SYMBOL (between 1 & 2) -->
-    <div class="snowman fade">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
+<main id="container">
 
-    <!-- SECTION 2 -->
-    <section class="section fade">
-      <p>
-        You’ve been a <span class="accent">strong woman</span><br>
-        through so much this year.
-      </p>
-    </section>
+  <!-- SECTION 1 -->
+  <section class="scene">
+    <div class="garland">🎄🎄🎄</div>
+    <h1>Christmas feels a little warmer<br>when you think of the right people.</h1>
+  </section>
 
-    <!-- SECTION 3 (SUNSHINE GLOW) -->
-    <section class="section fade glow">
-      <p>
-        I hope today brings you calm, rest,<br>
-        and small moments of peace, Sunshine.
-      </p>
-    </section>
+  <!-- SECTION 2 -->
+  <section class="scene">
+    <div class="snowman">⛄</div>
+    <div class="gifts">🎁 🎁 🎁</div>
+    <h1>You’ve been a <span class="red">strong woman</span><br>through so much this year.</h1>
+  </section>
 
-    <!-- SECTION 4 (ANGEL HALO) -->
-    <section class="section fade final">
-      <div class="halo"></div>
-      <p class="final-text">
-        Merry Christmas 🤍
-      </p>
-    </section>
+  <!-- SECTION 3 -->
+  <section class="scene sunshine">
+    <div class="sun">☀️</div>
+    <h1>
+      I hope today brings you calm, rest,<br>
+      and small moments of peace,<br>
+      <span class="gold">Sunshine</span>.
+    </h1>
+  </section>
 
-  </main>
+  <!-- SECTION 4 -->
+  <section class="scene angel">
+    <div class="wings">👼</div>
+    <h1>You are protected,<br>even when you don’t notice it.</h1>
+  </section>
 
-  <script>
-    const faders = document.querySelectorAll('.fade');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('show');
-        }
-      });
-    }, { threshold: 0.2 });
+  <!-- SECTION 5 -->
+  <section class="scene finale">
+    <div class="reindeer">🦌 🦌</div>
+    <div class="santa">🎅</div>
+    <h1 class="final">Merry Christmas 🤍</h1>
+  </section>
 
-    faders.forEach(el => observer.observe(el));
-  </script>
+</main>
+
+<script src="script.js"></script>
 </body>
 </html>
