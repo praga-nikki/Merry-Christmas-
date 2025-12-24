@@ -1,53 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Merry Christmas</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+const gift = document.getElementById("gift-box");
+const giftScreen = document.getElementById("gift-screen");
+const cards = document.getElementById("cards");
+const cardEls = document.querySelectorAll(".card");
 
-<!-- Snow -->
-<div class="snow"></div>
+let current = 0;
 
-<!-- Gift Opening Screen -->
-<div id="gift-screen" class="center">
-  <div id="gift-box">🎁</div>
-  <p>Tap to open your Christmas gift</p>
-</div>
+gift.onclick = () => {
+  giftScreen.classList.add("hidden");
+  cards.classList.remove("hidden");
+  updateCards();
+};
 
-<!-- Cards Screen -->
-<div id="cards" class="hidden">
+function updateCards() {
+  cardEls.forEach((card, i) => {
+    card.style.zIndex = cardEls.length - i;
+    card.style.display = i === current ? "block" : "none";
+  });
+}
 
-  <div class="card theme-santa">
-    🎅🦌
-    <h2>I, Pragadeesh</h2>
-    <p>wish you a very Merry Christmas 🤍</p>
-  </div>
+let startX = 0;
 
-  <div class="card theme-snowman">
-    ⛄
-    <p>You’ve been a <span class="red">strong woman</span><br>through so much this year.</p>
-  </div>
+cardEls.forEach(card => {
+  card.addEventListener("touchstart", e => {
+    startX = e.touches[0].clientX;
+  });
 
-  <div class="card theme-sunshine">
-    ☀️
-    <p>I hope today brings you calm, rest,<br>and peace, <b>Sunshine</b>.</p>
-  </div>
-
-  <div class="card theme-angel">
-    👼
-    <p>You are protected,<br>even when you don’t notice it.</p>
-  </div>
-
-  <div class="card theme-final">
-    🎄✨
-    <h2>Merry Christmas 🤍</h2>
-  </div>
-
-</div>
-
-<script src="script.js"></script>
-</body>
-</html>
+  card.addEventListener("touchend", e => {
+    let diff = e.changedTouches[0].clientX - startX;
+    if (Math.abs(diff) > 50) {
+      current++;
+      if (current >= cardEls.length) current = cardEls.length - 1;
+      updateCards();
+    }
+  });
+});
