@@ -1,36 +1,35 @@
 const gift = document.getElementById("gift-box");
 const giftScreen = document.getElementById("gift-screen");
-const cards = document.getElementById("cards");
-const cardEls = document.querySelectorAll(".card");
-
-let current = 0;
+const stage = document.getElementById("card-stage");
+let cards = document.querySelectorAll(".card");
 
 gift.onclick = () => {
   giftScreen.classList.add("hidden");
-  cards.classList.remove("hidden");
-  updateCards();
+  stage.classList.remove("hidden");
 };
 
-function updateCards() {
-  cardEls.forEach((card, i) => {
-    card.style.zIndex = cardEls.length - i;
-    card.style.display = i === current ? "block" : "none";
-  });
-}
-
 let startX = 0;
+let startY = 0;
 
-cardEls.forEach(card => {
+cards.forEach(card => {
   card.addEventListener("touchstart", e => {
     startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+  });
+
+  card.addEventListener("touchmove", e => {
+    let dx = e.touches[0].clientX - startX;
+    let dy = e.touches[0].clientY - startY;
+    card.style.transform = `translate(${dx}px, ${dy}px) rotate(${dx * 0.05}deg)`;
   });
 
   card.addEventListener("touchend", e => {
-    let diff = e.changedTouches[0].clientX - startX;
-    if (Math.abs(diff) > 50) {
-      current++;
-      if (current >= cardEls.length) current = cardEls.length - 1;
-      updateCards();
+    let dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 80) {
+      card.style.opacity = 0;
+      setTimeout(() => card.remove(), 300);
+    } else {
+      card.style.transform = "";
     }
   });
 });
