@@ -1,55 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Merry Christmas</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- SNOW -->
+<!-- Snow -->
 <div class="snow"></div>
 
-<main id="container">
+<!-- Gift Opening Screen -->
+<div id="gift-screen" class="center">
+  <div id="gift-box">🎁</div>
+  <p>Tap to open your Christmas gift</p>
+</div>
 
-  <!-- SECTION 1 -->
-  <section class="scene">
-    <div class="garland">🎄🎄🎄</div>
-    <h1>Christmas feels a little warmer<br>when you think of the right people.</h1>
-  </section>
+<!-- Cards Screen -->
+<div id="cards" class="hidden">
 
-  <!-- SECTION 2 -->
-  <section class="scene">
-    <div class="snowman">⛄</div>
-    <div class="gifts">🎁 🎁 🎁</div>
-    <h1>You’ve been a <span class="red">strong woman</span><br>through so much this year.</h1>
-  </section>
+  <div class="card theme-santa">
+    🎅🦌
+    <h2>I, Pragadeesh</h2>
+    <p>wish you a very Merry Christmas 🤍</p>
+  </div>
 
-  <!-- SECTION 3 -->
-  <section class="scene sunshine">
-    <div class="sun">☀️</div>
-    <h1>
-      I hope today brings you calm, rest,<br>
-      and small moments of peace,<br>
-      <span class="gold">Sunshine</span>.
-    </h1>
-  </section>
+  <div class="card theme-snowman">
+    ⛄
+    <p>You’ve been a <span class="red">strong woman</span><br>through so much this year.</p>
+  </div>
 
-  <!-- SECTION 4 -->
-  <section class="scene angel">
-    <div class="wings">👼</div>
-    <h1>You are protected,<br>even when you don’t notice it.</h1>
-  </section>
+  <div class="card theme-sunshine">
+    ☀️
+    <p>I hope today brings you calm, rest,<br>and peace, <b>Sunshine</b>.</p>
+  </div>
 
-  <!-- SECTION 5 -->
-  <section class="scene finale">
-    <div class="reindeer">🦌 🦌</div>
-    <div class="santa">🎅</div>
-    <h1 class="final">Merry Christmas 🤍</h1>
-  </section>
+  <div class="card theme-angel">
+    👼
+    <p>You are protected,<br>even when you don’t notice it.</p>
+  </div>
 
-</main>
+  <div class="card theme-final">
+    🎄✨
+    <h2>Merry Christmas 🤍</h2>
+  </div>
+
+</div>
 
 <script src="script.js"></script>
 </body>
