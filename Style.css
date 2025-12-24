@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #F7F3EE;
+  color: #2B2B2B;
+  min-height: 100vh;
+}
+
+/* Snowy grain overlay */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.06;
+  pointer-events: none;
+  z-index: 1;
+}
+
+main {
+  position: relative;
+  z-index: 2;
+}
+
+/* Sections */
+.section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.section p {
+  font-size: 1.3rem;
+  line-height: 1.6;
+}
+
+/* Accent */
+.accent {
+  color: #B23A3A;
+}
+
+/* Snowman dots */
+.snowman {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin: 2rem 0;
+}
+
+.snowman span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #DAD4CE;
+}
+
+/* Sunshine glow */
+.glow {
+  position: relative;
+}
+
+.glow::before {
+  content: "";
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, #FFF6E8 0%, transparent 70%);
+  opacity: 0.5;
+  z-index: -1;
+}
+
+/* Angel halo */
+.final {
+  position: relative;
+}
+
+.halo {
+  width: 60px;
+  height: 12px;
+  border: 1px solid #E6DED6;
+  border-radius: 50%;
+  position: absolute;
+  top: 40%;
+}
+
+.final-text {
+  font-size: 1.6rem;
+}
+
+/* Animations */
+.fade {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.7s ease;
+}
+
+.fade.show {
+  opacity: 1;
+  transform: translateY(0);
+}
