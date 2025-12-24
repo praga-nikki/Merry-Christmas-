@@ -9,103 +9,129 @@
 body {
   font-family: 'Inter', sans-serif;
   background: #F7F3EE;
+  overflow-x: hidden;
   color: #2B2B2B;
+}
+
+.scene {
   min-height: 100vh;
-}
-
-/* Snowy grain overlay */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-  opacity: 0.06;
-  pointer-events: none;
-  z-index: 1;
-}
-
-main {
-  position: relative;
-  z-index: 2;
-}
-
-/* Sections */
-.section {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 2rem;
-}
-
-.section p {
-  font-size: 1.3rem;
-  line-height: 1.6;
-}
-
-/* Accent */
-.accent {
-  color: #B23A3A;
-}
-
-/* Snowman dots */
-.snowman {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
-  margin: 2rem 0;
-}
-
-.snowman span {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #DAD4CE;
-}
-
-/* Sunshine glow */
-.glow {
+  justify-content: center;
+  gap: 20px;
+  text-align: center;
+  padding: 2rem;
   position: relative;
 }
 
-.glow::before {
-  content: "";
-  position: absolute;
-  width: 280px;
-  height: 280px;
-  background: radial-gradient(circle, #FFF6E8 0%, transparent 70%);
-  opacity: 0.5;
-  z-index: -1;
+h1 {
+  font-size: 1.4rem;
+  line-height: 1.6;
 }
 
-/* Angel halo */
+.red {
+  color: #B23A3A;
+}
+
+.gold {
+  color: #C9A24D;
+  font-weight: 600;
+}
+
+/* Garland */
+.garland {
+  position: absolute;
+  top: 20px;
+  font-size: 1.5rem;
+}
+
+/* Snowman */
+.snowman {
+  font-size: 4rem;
+  animation: bounce 2s infinite;
+}
+
+/* Gifts */
+.gifts {
+  font-size: 2rem;
+  animation: wobble 2s infinite;
+}
+
+/* Sunshine */
+.sunshine {
+  background: radial-gradient(circle at center, #FFF3D8 0%, transparent 60%);
+}
+
+.sun {
+  font-size: 4rem;
+  animation: glow 3s infinite;
+}
+
+/* Angel */
+.wings {
+  font-size: 4rem;
+  animation: open 2s ease-in-out infinite alternate;
+}
+
+/* Finale */
+.finale {
+  background: #F3EFEA;
+}
+
+.santa {
+  font-size: 4rem;
+  animation: slide 4s infinite;
+}
+
+.reindeer {
+  font-size: 2.5rem;
+}
+
 .final {
-  position: relative;
+  font-size: 1.8rem;
 }
 
-.halo {
-  width: 60px;
-  height: 12px;
-  border: 1px solid #E6DED6;
-  border-radius: 50%;
-  position: absolute;
-  top: 40%;
-}
-
-.final-text {
-  font-size: 1.6rem;
+/* Snow effect */
+.snow::after {
+  content: "❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄";
+  position: fixed;
+  top: -10px;
+  left: 0;
+  width: 100%;
+  font-size: 1.5rem;
+  animation: snow 10s linear infinite;
+  pointer-events: none;
 }
 
 /* Animations */
-.fade {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.7s ease;
+@keyframes bounce {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
-.fade.show {
-  opacity: 1;
-  transform: translateY(0);
+@keyframes wobble {
+  0%,100% { transform: rotate(0); }
+  50% { transform: rotate(5deg); }
+}
+
+@keyframes glow {
+  0%,100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+@keyframes open {
+  from { transform: scaleX(0.9); }
+  to { transform: scaleX(1.1); }
+}
+
+@keyframes slide {
+  0% { transform: translateX(-50px); }
+  50% { transform: translateX(50px); }
+  100% { transform: translateX(-50px); }
+}
+
+@keyframes snow {
+  0% { transform: translateY(-100px); }
+  100% { transform: translateY(120vh); }
 }
