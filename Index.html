@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Merry Christmas</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <main>
+
+    <!-- SECTION 1 -->
+    <section class="section fade">
+      <p>
+        Christmas feels a little warmer<br>
+        when you think of the right people.
+      </p>
+    </section>
+
+    <!-- SNOWMAN SYMBOL (between 1 & 2) -->
+    <div class="snowman fade">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <!-- SECTION 2 -->
+    <section class="section fade">
+      <p>
+        You’ve been a <span class="accent">strong woman</span><br>
+        through so much this year.
+      </p>
+    </section>
+
+    <!-- SECTION 3 (SUNSHINE GLOW) -->
+    <section class="section fade glow">
+      <p>
+        I hope today brings you calm, rest,<br>
+        and small moments of peace, Sunshine.
+      </p>
+    </section>
+
+    <!-- SECTION 4 (ANGEL HALO) -->
+    <section class="section fade final">
+      <div class="halo"></div>
+      <p class="final-text">
+        Merry Christmas 🤍
+      </p>
+    </section>
+
+  </main>
+
+  <script>
+    const faders = document.querySelectorAll('.fade');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, { threshold: 0.2 });
+
+    faders.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
