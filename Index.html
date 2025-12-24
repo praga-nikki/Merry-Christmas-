@@ -1,49 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Merry Christmas</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
 <!-- Snow -->
-<div class="snow"></div>
+<div class="snow-layer"></div>
 
 <!-- Gift Screen -->
 <div id="gift-screen" class="center">
   <div id="gift-box">🎁</div>
-  <p class="hint">Tap to open your Christmas gift</p>
+  <p class="hint-main">Tap to open your Christmas gift</p>
+  <p class="hint-sub">A small surprise awaits ✨</p>
 </div>
 
-<!-- Cards Container -->
+<!-- Card Stage -->
 <div id="card-stage" class="hidden">
 
-  <!-- Card Stack -->
-  <div class="card theme-cream">
-    🎄✨
-    <h2>Merry Christmas 🤍</h2>
+  <div class="card theme-cream final">
+    <div class="icon">🎄✨</div>
+    <h2 class="text">Merry Christmas 🤍</h2>
   </div>
 
   <div class="card theme-lavender angel">
-    👼
-    <p>You are protected,<br>even when you don’t notice it.</p>
+    <div class="icon">👼</div>
+    <p class="text">You are protected,<br>even when you don’t notice it.</p>
   </div>
 
   <div class="card theme-sunshine sunshine">
-    ☀️
-    <p>I hope today brings you calm, rest,<br>and peace, <b>Sunshine</b>.</p>
+    <div class="icon">☀️</div>
+    <p class="text">I hope today brings you calm, rest,<br>and peace, <b>Sunshine</b>.</p>
   </div>
 
   <div class="card theme-winter">
-    ⛄
-    <p>You’ve been a <span class="accent">strong woman</span><br>through so much this year.</p>
+    <div class="icon">⛄</div>
+    <p class="text">You’ve been a <span>strong woman</span><br>through so much this year.</p>
   </div>
 
   <div class="card theme-festive">
-    🎅🦌
-    <p><b>I wish you a Happy Christmas 🤍</b></p>
+    <div class="icon">🎅🦌</div>
+    <p class="text"><b>I wish you a Happy Christmas 🤍</b></p>
+    <div class="swipe-hint">↔ Swipe gently</div>
   </div>
 
 </div>
