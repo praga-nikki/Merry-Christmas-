@@ -4,11 +4,12 @@
   <meta charset="UTF-8" />
   <title>Merry Christmas</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<!-- Snow -->
+<!-- Ambient Snow -->
 <div class="snow-layer"></div>
 
 <!-- Gift Screen -->
@@ -21,29 +22,48 @@
 <!-- Card Stage -->
 <div id="card-stage" class="hidden">
 
-  <div class="card theme-cream final">
+  <!-- FINAL (STATIC) -->
+  <div class="card theme-cream last-card">
     <div class="icon">🎄✨</div>
-    <h2 class="text">Merry Christmas 🤍</h2>
+    <h2 class="text emphasis">Merry Christmas 🤍</h2>
   </div>
 
+  <!-- ANGEL -->
   <div class="card theme-lavender angel">
     <div class="icon">👼</div>
-    <p class="text">You are protected,<br>even when you don’t notice it.</p>
+    <p class="text">
+      Some days,<br>
+      you didn’t need answers.<br>
+      You just needed peace.
+    </p>
   </div>
 
+  <!-- SUNSHINE -->
   <div class="card theme-sunshine sunshine">
     <div class="icon">☀️</div>
-    <p class="text">I hope today brings you calm, rest,<br>and peace, <b>Sunshine</b>.</p>
+    <p class="text">
+      I hope today brings you calm,<br>
+      rest, and a little light,<br>
+      <span class="emphasis">Sunshine</span>.
+    </p>
   </div>
 
+  <!-- STRONG WOMAN -->
   <div class="card theme-winter">
     <div class="icon">⛄</div>
-    <p class="text">You’ve been a <span>strong woman</span><br>through so much this year.</p>
+    <p class="text">
+      You’ve been a <span class="emphasis">strong woman</span>,<br>
+      even on days you didn’t feel like one.
+    </p>
   </div>
 
-  <div class="card theme-festive">
+  <!-- OPENING -->
+  <div class="card theme-festive active">
     <div class="icon">🎅🦌</div>
-    <p class="text"><b>I wish you a Happy Christmas 🤍</b></p>
+    <p class="text emphasis">
+      I wish you a peaceful,<br>
+      gentle Christmas 🤍
+    </p>
     <div class="swipe-hint">↔ Swipe gently</div>
   </div>
 
