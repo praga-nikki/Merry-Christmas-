@@ -1,74 +1,300 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Merry Christmas</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<title>Merry Christmas</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+
+<style>
+/* ===== GLOBAL ===== */
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: #f7f2ea;
+  overflow: hidden;
+}
+
+/* ===== GIFT SCREEN ===== */
+#gift-screen {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#gift-box {
+  font-size: 5rem;
+  cursor: pointer;
+}
+
+.hint-main {
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+
+.hint-sub {
+  font-size: 0.9rem;
+  opacity: 0.6;
+}
+
+/* Gift animation */
+@keyframes giftOpen {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.05) rotate(-3deg); }
+  70% { transform: scale(1.1) rotate(3deg); }
+  100% { transform: scale(0); opacity: 0; }
+}
+
+.gift-open {
+  animation: giftOpen 0.8s ease forwards;
+}
+
+/* ===== CARD STAGE ===== */
+#card-stage {
+  position: relative;
+  height: 100vh;
+  display: none;
+}
+
+/* ===== CARD ===== */
+.card {
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 88%;
+  max-width: 420px;
+  height: 65vh;
+  padding: 36px 28px;
+  background: #fffaf5;
+  box-shadow: 0 25px 55px rgba(0,0,0,0.12);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.4rem;
+  text-align: center;
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+/* Paper texture */
+.card {
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(0,0,0,0.025),
+      rgba(0,0,0,0.025) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+}
+
+/* Stack effect */
+.card:nth-child(1){opacity:.35; transform:translate(-50%,18px) rotate(-2deg);}
+.card:nth-child(2){opacity:.5;  transform:translate(-50%,12px) rotate(1deg);}
+.card:nth-child(3){opacity:.7;  transform:translate(-50%,6px);}
+.card:nth-child(4){opacity:.9;}
+
+/* Themes */
+.festive{background:#fff1f1;}
+.winter{background:#eef6ff;}
+.sunshine{background:#fff7d6;}
+.lavender{background:#f4f1ff;}
+.cream{background:#faf7f2;}
+
+/* Text */
+.icon { font-size: 2rem; }
+
+.text {
+  font-size: 1.55rem;
+  line-height: 1.6;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.6s ease;
+}
+
+.card.active .text {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.emphasis {
+  font-family: 'Playfair Display', serif;
+  font-weight: 500;
+}
+
+.highlight { color:#cc6b6b; }
+.sun { color:#e3a018; }
+
+/* Swipe hint */
+.swipe-hint {
+  position: absolute;
+  bottom: 1.2rem;
+  width: 100%;
+  font-size: 0.85rem;
+  opacity: 0.5;
+}
+
+/* Decorations */
+.card::before,
+.card::after {
+  content: "✦";
+  position: absolute;
+  font-size: 18px;
+  opacity: 0.15;
+}
+.card::before { top:18px; right:22px; }
+.card::after { bottom:18px; left:22px; }
+
+/* Ambient snow drift */
+.snow::before {
+  content:"❄ ○ ❄ ○ ❄";
+  position: fixed;
+  top: 15%;
+  width:100%;
+  opacity:0.18;
+  animation: drift 18s linear infinite;
+  pointer-events:none;
+}
+
+@keyframes drift {
+  from { transform: translateX(-15vw); }
+  to { transform: translateX(115vw); }
+}
+
+/* Final card breath */
+@keyframes breath {
+  0%{transform:translateX(-50%) scale(1);}
+  50%{transform:translateX(-50%) scale(1.015);}
+  100%{transform:translateX(-50%) scale(1);}
+}
+.last-active {
+  animation: breath 2.6s ease 1;
+}
+</style>
 </head>
+
 <body>
 
-<!-- Ambient Snow -->
-<div class="snow-layer"></div>
+<div class="snow"></div>
 
-<!-- Gift Screen -->
-<div id="gift-screen" class="center">
+<!-- Gift -->
+<div id="gift-screen">
   <div id="gift-box">🎁</div>
-  <p class="hint-main">Tap to open your Christmas gift</p>
-  <p class="hint-sub">A small surprise awaits ✨</p>
+  <div class="hint-main">Tap to open your Christmas gift</div>
+  <div class="hint-sub">A small surprise awaits ✨</div>
 </div>
 
-<!-- Card Stage -->
-<div id="card-stage" class="hidden">
+<!-- Cards -->
+<div id="card-stage">
 
-  <!-- FINAL (STATIC) -->
-  <div class="card theme-cream last-card">
+  <div class="card cream">
     <div class="icon">🎄✨</div>
-    <h2 class="text emphasis">Merry Christmas 🤍</h2>
+    <div class="text emphasis">Merry Christmas 🤍<br><br>This wish stays.</div>
   </div>
 
-  <!-- ANGEL -->
-  <div class="card theme-lavender angel">
+  <div class="card lavender">
     <div class="icon">👼</div>
-    <p class="text">
-      Some days,<br>
-      you didn’t need answers.<br>
-      You just needed peace.
-    </p>
+    <div class="text">
+      You are protected,<br>
+      even when you don’t notice it.<br><br>
+      Some things quietly stay.
+    </div>
   </div>
 
-  <!-- SUNSHINE -->
-  <div class="card theme-sunshine sunshine">
+  <div class="card sunshine">
     <div class="icon">☀️</div>
-    <p class="text">
+    <div class="text">
       I hope today brings you calm,<br>
       rest, and a little light,<br>
-      <span class="emphasis">Sunshine</span>.
-    </p>
+      <span class="emphasis sun">Sunshine</span>.
+    </div>
   </div>
 
-  <!-- STRONG WOMAN -->
-  <div class="card theme-winter">
+  <div class="card winter">
     <div class="icon">⛄</div>
-    <p class="text">
-      You’ve been a <span class="emphasis">strong woman</span>,<br>
+    <div class="text">
+      You’ve been a <span class="emphasis highlight">strong woman</span>,<br>
       even on days you didn’t feel like one.
-    </p>
+    </div>
   </div>
 
-  <!-- OPENING -->
-  <div class="card theme-festive active">
-    <div class="icon">🎅🦌</div>
-    <p class="text emphasis">
-      I wish you a peaceful,<br>
-      gentle Christmas 🤍
-    </p>
-    <div class="swipe-hint">↔ Swipe gently</div>
+  <div class="card festive active">
+    <div class="icon">🎄</div>
+    <div class="text emphasis">
+      I wish you a Happy Christmas 🤍<br><br>
+      For the warmth you bring<br>
+      without trying.
+    </div>
+    <div class="swipe-hint">← swipe · swipe →</div>
   </div>
 
 </div>
 
-<script src="script.js"></script>
+<script>
+const gift = document.getElementById("gift-box");
+const giftScreen = document.getElementById("gift-screen");
+const stage = document.getElementById("card-stage");
+
+let cards = Array.from(document.querySelectorAll(".card"));
+let startX = 0;
+const THRESHOLD = 120;
+const RESIST = 0.35;
+
+gift.onclick = () => {
+  gift.classList.add("gift-open");
+  setTimeout(()=>{
+    giftScreen.style.display="none";
+    stage.style.display="block";
+    activateTop();
+  },800);
+};
+
+function activateTop(){
+  let top = cards[cards.length-1];
+  if(top) top.classList.add("active");
+}
+
+cards.forEach(card=>{
+  card.addEventListener("touchstart",e=>{
+    startX = e.touches[0].clientX;
+  });
+
+  card.addEventListener("touchmove",e=>{
+    let dx = e.touches[0].clientX - startX;
+    card.style.transform =
+      `translateX(${dx*RESIST}px) rotate(${dx*0.02}deg)`;
+  });
+
+  card.addEventListener("touchend",e=>{
+    let dx = e.changedTouches[0].clientX - startX;
+
+    if(cards.length === 1){
+      card.classList.add("last-active");
+      return;
+    }
+
+    if(Math.abs(dx) > THRESHOLD){
+      card.style.opacity = 0;
+      setTimeout(()=>{
+        card.remove();
+        cards.pop();
+        activateTop();
+      },300);
+    } else {
+      card.style.transform="translateX(-50%)";
+    }
+
+    let hint = document.querySelector(".swipe-hint");
+    if(hint) hint.remove();
+  });
+});
+</script>
+
 </body>
 </html>
