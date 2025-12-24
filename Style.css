@@ -1,10 +1,22 @@
 body {
   margin: 0;
-  font-family: Inter, sans-serif;
-  background: #F7F3EE;
+  font-family: 'Inter', sans-serif;
+  background: #F6F2EC;
   overflow: hidden;
 }
 
+/* Snowfall */
+.snow::after {
+  content: "❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄";
+  position: fixed;
+  top: -10px;
+  width: 100%;
+  opacity: 0.35;
+  animation: snow 12s linear infinite;
+  pointer-events: none;
+}
+
+/* Gift Screen */
 .center {
   height: 100vh;
   display: flex;
@@ -15,54 +27,80 @@ body {
 
 #gift-box {
   font-size: 5rem;
-  animation: bounce 1.5s infinite;
   cursor: pointer;
+  animation: bounce 1.5s infinite;
+}
+
+.hint {
+  margin-top: 1rem;
+  color: #555;
+}
+
+/* Card Stage */
+#card-stage {
+  position: relative;
+  height: 100vh;
 }
 
 .hidden {
   display: none;
 }
 
-/* Cards */
-#cards {
-  position: relative;
-  height: 100vh;
-}
-
+/* Card Base */
 .card {
   position: absolute;
   top: 15%;
   left: 50%;
   transform: translateX(-50%);
-  width: 80%;
+  width: 82%;
   height: 60%;
-  background: white;
-  border-radius: 20px;
   padding: 2rem;
+  background: white;
+  box-shadow:
+    0 30px 60px rgba(0,0,0,0.12),
+    inset 0 0 0 1px rgba(0,0,0,0.05);
+  border-radius: 0; /* SHARP */
   text-align: center;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
   font-size: 1.2rem;
+  transition: transform 0.4s ease, opacity 0.4s ease;
 }
+
+/* Stacked illusion */
+.card:nth-child(1) { transform: translate(-50%, 12px) rotate(-2deg); }
+.card:nth-child(2) { transform: translate(-50%, 8px) rotate(1.5deg); }
+.card:nth-child(3) { transform: translate(-50%, 4px) rotate(-1deg); }
+.card:nth-child(4) { transform: translate(-50%, 0) rotate(0); }
 
 /* Themes */
-.theme-santa { background: #fff5f5; }
-.theme-snowman { background: #f0f8ff; }
-.theme-sunshine { background: #fff9e6; }
-.theme-angel { background: #f9f7ff; }
-.theme-final { background: #f3efe8; }
+.theme-festive { background: #FFF1F1; }
+.theme-winter { background: #EEF6FF; }
+.theme-sunshine { background: #FFF8E1; }
+.theme-lavender { background: #F4F1FF; }
+.theme-cream { background: #FAF7F2; }
 
-.red { color: #B23A3A; }
+.accent { color: #B23A3A; }
 
-/* Snow */
-.snow::after {
-  content: "❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄ ❄";
-  position: fixed;
-  top: -10px;
-  width: 100%;
-  animation: snow 10s linear infinite;
-  opacity: 0.4;
+/* Sunshine glow */
+.sunshine::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(circle, rgba(255,214,102,0.35), transparent 60%);
+  z-index: -1;
 }
 
+/* Angel wings watermark */
+.angel::before {
+  content: "👼";
+  position: absolute;
+  font-size: 10rem;
+  opacity: 0.05;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Animations */
 @keyframes bounce {
   50% { transform: translateY(-10px); }
 }
